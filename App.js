@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 import Registro from "./registro"
-import Inicio from './Inicio';
+import Inicio from './inicio';
 
 export default function App() {
 
@@ -18,7 +18,7 @@ export default function App() {
     []
   )
   return (
-    <Inicio />
+    <Registro />
   );
 }
 

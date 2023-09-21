@@ -7,7 +7,7 @@ import {
   TextInput,
 } from 'react-native';
 
-export default function App() {
+export default function Inicio() {
   return (
     <View style={styles.container}>
       <Image style={styles.Image} source={require('./img/img-fondo.jpg')}></Image>

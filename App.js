@@ -1,15 +1,24 @@
+import {useCallback, useMemo, useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
   View
 } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import Registro from "./registro"
+import Inicio from './Inicio';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
 
-    </View>
+  const [num, setNum]= useState(2) //4 6
+
+  useEffect(
+    function(){
+
+    },
+    []
+  )
+  return (
+    <Inicio />
   );
 }
 

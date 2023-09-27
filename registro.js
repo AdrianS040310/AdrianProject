@@ -8,7 +8,13 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-export default function Registro() {
+export default function Registro(props) {
+
+  const { navigation } = props;
+
+  const goToInicio = () => {
+    navigation.navigate("inicio");
+  }
   return (
     <View style={styles.container}>
 
@@ -44,7 +50,9 @@ export default function Registro() {
         <View style={styles.separacion}>
           <Text>
             Tienes una cuenta?
-            <Text style={styles.textIniciarSesion}> Inicia sesión</Text>
+            <TouchableOpacity onPress={goToInicio}>
+              <Text style={styles.textIniciarSesion}> Inicia sesión</Text>
+            </TouchableOpacity>
           </Text>
         </View>
       </View>

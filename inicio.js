@@ -7,7 +7,13 @@ import {
   TextInput,
 } from 'react-native';
 
-export default function Inicio() {
+export default function Inicio(props) {
+
+  const { navigation } = props;
+
+  const goToRegistro = () => {
+    navigation.navigate("registro");
+  }
   return (
     <View style={styles.container}>
       <Image style={styles.Image} source={require('./img/img-fondo.jpg')}></Image>
@@ -41,7 +47,9 @@ export default function Inicio() {
         <View style={styles.separacion}>
           <Text>
             No tienes cuenta?
-            <Text style={styles.textRegister}> Registrate</Text>
+            <TouchableOpacity onPress={goToRegistro}>
+              <Text style={styles.textRegister}> Registrate</Text>
+            </TouchableOpacity>
           </Text>
         </View>
 

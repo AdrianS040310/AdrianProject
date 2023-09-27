@@ -1,30 +1,17 @@
-import {useCallback, useMemo, useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Registro from "./registro"
 import Inicio from './inicio';
 
+const Stack = createNativeStackNavigator();
+
 export default function App() {
-
-  const [num, setNum]= useState(2) //4 6
-
-  useEffect(
-    function(){
-
-    },
-    []
-  )
   return (
-    <Registro />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="registro" options={{ headerShown: false }} component={Registro} />
+        <Stack.Screen name="inicio" options={{ headerShown: false }} component={Inicio} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: "100%",
-  },
-});

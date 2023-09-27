@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
   separacion: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 150,
+    marginTop: 143,
   }
 });

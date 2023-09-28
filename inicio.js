@@ -47,10 +47,10 @@ export default function Inicio(props) {
         <View style={styles.separacion}>
           <Text>
             No tienes cuenta?
-            <TouchableOpacity onPress={goToRegistro}>
-              <Text style={styles.textRegister}> Registrate</Text>
-            </TouchableOpacity>
           </Text>
+          <TouchableOpacity onPress={goToRegistro}>
+            <Text style={styles.textRegister}> Registrate</Text>
+          </TouchableOpacity>
         </View>
 
       </View>
@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     color: "#00BFFF",
   },
   separacion: {
+    flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center",
-    marginTop: 180,
+    marginTop: 190,
   }
 });

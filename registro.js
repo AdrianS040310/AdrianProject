@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -5,8 +6,10 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  Button,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 
 export default function Registro(props) {
 
@@ -15,6 +18,25 @@ export default function Registro(props) {
   const goToInicio = () => {
     navigation.navigate("inicio");
   }
+
+  const [image, setImage] = useState(null);
+
+  const pickImage = async () => {
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+    }
+  };
+
   return (
     <View style={styles.container}>
 
@@ -47,13 +69,22 @@ export default function Registro(props) {
             <Text style={styles.textButton}>LOGIN</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.separacion}>
-          <Text>
+
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <TouchableOpacity onPress={pickImage} style={styles.button}>
+            <Text style={styles.textButtonImage}>
+              Clic Aquí para seleccionar una imagen
+            </Text>
+          </TouchableOpacity>
+          {image && <Image source={{ uri: image }} style={{ width: 120, height: 120 }} />}
+        </View>
+        <View style={styles.center}>
+          <Text style={{ alignItems: "center" }} >
             Tienes una cuenta?
-            <TouchableOpacity onPress={goToInicio}>
-              <Text style={styles.textIniciarSesion}> Inicia sesión</Text>
-            </TouchableOpacity>
           </Text>
+          <TouchableOpacity onPress={goToInicio}>
+            <Text style={styles.textIniciarSesion} > Inicia sesión</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -62,7 +93,6 @@ export default function Registro(props) {
 
 const styles = StyleSheet.create({
   centerText: {
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
@@ -75,7 +105,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     paddingTop: 60,
     position: "relative",
-
   },
   title: {
     position: "relative",
@@ -102,17 +131,16 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   personalizarButton: {
-    backgroundColor: "green",
+    backgroundColor: "#238704",
     width: 300,
     height: 70,
     borderRadius: 50,
-    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 30,
   },
   textButton: {
-    color: "#fff",
+    color: "#efffe5",
     fontSize: 20,
   },
   textIniciarSesion: {
@@ -120,9 +148,33 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     color: "#00BFFF",
   },
-  separacion: {
+  'harlequin': {
+    '50': '#efffe5',
+    '100': '#dbffc6',
+    '200': '#b8ff93',
+    '300': '#89ff55',
+    '400': '#60f823',
+    '500': '#3bd303',
+    '600': '#2cb300',
+    '700': '#238704',
+    '800': '#206a0a',
+    '900': '#1d5a0d',
+    '950': '#0a3201',
+  },
+  button: {
+    backgroundColor: "#238704",
+    borderRadius: 40,
+    width: "auto",
+    height: 40,
     justifyContent: "center",
-    alignItems: "center",
-    marginTop: 143,
+    paddingHorizontal: 25,
+    marginTop: 10,
+  },
+  textButtonImage: {
+    color: "#efffe5",
+    fontSize: 16,
+  },
+  center: {
+    flexDirection: "row",
   }
 });

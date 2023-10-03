@@ -16,7 +16,7 @@ export default function Inicio(props) {
   }
   return (
     <View style={styles.container}>
-      <Image style={styles.Image} source={require('./img/img-fondo.jpg')}></Image>
+      <Image style={styles.Image} source={require('../../../img/img-fondo.jpg')}></Image>
 
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Whatsapp</Text>

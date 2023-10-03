@@ -12,27 +12,30 @@ import {
 } from 'react-native';
 import { useFonts } from 'expo-font';
 
-export default function Chats() {
+export default function Chats(props) {
+
+  const { navigation } = props;
+
+  const goToRegistro = () => {
+    navigation.navigate("registro");
+  }
+
   const [fontsLoaded] = useFonts({
     'DelaGothicOne-Regular': require('../../../assets/fonts/DelaGothicOne-Regular.ttf'),
   });
 
-  /*if (!fontsLoaded) {
-    return null;
-  }*/
-
   const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
+      title: 'Name',
     },
     {
       id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
+      title: 'Name',
     },
     {
       id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
+      title: 'Name ',
     },
   ];
 
@@ -63,6 +66,9 @@ export default function Chats() {
     </TouchableOpacity>
   );
 
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View>
@@ -76,8 +82,11 @@ export default function Chats() {
           extraData={selectedId}
         />
       </View>
-
+      <TouchableOpacity onPress={goToRegistro}>
+        <Text style={styles.textRegister}> Registrate</Text>
+      </TouchableOpacity>
     </SafeAreaView>
+
   );
 }
 

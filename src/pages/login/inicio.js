@@ -6,14 +6,23 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import { useFonts } from 'expo-font';
 
 export default function Inicio(props) {
+  const [fontsLoaded] = useFonts({
+    'DelaGothicOne-Regular': require('../../../assets/fonts/DelaGothicOne-Regular.ttf'),
+  });
 
   const { navigation } = props;
 
   const goToRegistro = () => {
     navigation.navigate("registro");
   }
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <View style={styles.container}>
       <Image style={styles.Image} source={require('../../../img/img-fondo.jpg')}></Image>
@@ -90,6 +99,7 @@ const styles = StyleSheet.create({
     position: "relative",
     color: "#fff",
     fontSize: 50,
+    fontFamily: "DelaGothicOne-Regular",
   },
   mainContainer: {
     backgroundColor: '#fffeaa',

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import axiosInstance from "../utils/axios"
 
 export default function Registro(props) {
 
@@ -19,23 +20,45 @@ export default function Registro(props) {
     navigation.navigate("inicio");
   }
 
+  const [state, setState] = useState({
+    names: "",
+    lastNames: "",
+    email: "",
+    password: ""
+  })
+
+  const handleChangeText = (text, name) => {
+    setState({
+      ...state,
+      [name]: text
+    })
+  }
+
+  const onRegister = async () => {
+    const sendable = {
+      "name": state.names,
+      "email": state.email,
+      "lastName": state.lastNames,
+      "password": state.password
+    }
+    axiosInstance.post("/v1/user", sendable)
+  }
+
   const [image, setImage] = useState(null);
 
   const pickImage = async () => {
-
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
-
     console.log(result);
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri);
-    }
   };
+
+  if (!result.canceled) {
+    setImage(result.assets[0].uri);
+  }
 
   return (
     <View style={styles.container}>
@@ -51,22 +74,30 @@ export default function Registro(props) {
         <TextInput
           style={styles.inputText}
           placeholder="Nombre"
+          value={state.names}
+          onChangeText={(text) => handleChangeText(text, "names")}
         />
         <TextInput
           style={styles.inputText}
           placeholder="Correo electronico"
+          value={state.email}
+          onChangeText={(text) => handleChangeText(text, "emails")}
         />
         <TextInput
           style={styles.inputText}
           placeholder="Contraseña"
+          value={state.password}
+          onChangeText={(text) => handleChangeText(text, "password")}
         />
         <TextInput
           style={styles.inputText}
-          placeholder="Confirmar contraseña"
+          placeholder="Apellidos"
+          value={state.lastNames}
+          onChangeText={(text) => handleChangeText(text, "lastNames")}
         />
         <View style={styles.centerText}>
-          <TouchableOpacity style={styles.personalizarButton}>
-            <Text style={styles.textButton}>LOGIN</Text>
+          <TouchableOpacity style={styles.personalizarButton} onPress={onRegister}>
+            <Text style={styles.textButton}>Register</Text>
           </TouchableOpacity>
         </View>
 

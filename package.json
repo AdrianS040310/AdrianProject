@@ -16,6 +16,7 @@
     "@mui/styled-engine-sc": "^5.14.10",
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/native-stack": "^6.9.14",
+    "axios": "^1.6.2",
     "expo": "~49.0.11",
     "expo-font": "~11.4.0",
     "expo-image-picker": "~14.3.2",

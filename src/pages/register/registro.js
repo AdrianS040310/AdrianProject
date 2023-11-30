@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
-import axiosInstance from "../utils/axios"
+//import axiosInstance from "../utils/axios"
 
 export default function Registro(props) {
 
@@ -56,9 +56,9 @@ export default function Registro(props) {
     console.log(result);
   };
 
-  if (!result.canceled) {
-    setImage(result.assets[0].uri);
-  }
+  // if (!result.canceled) {
+  //   setImage(result.assets[0].uri);
+  // }
 
   return (
     <View style={styles.container}>

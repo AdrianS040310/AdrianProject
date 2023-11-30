@@ -30,9 +30,9 @@ export default function Inicio(props) {
     }
     try {
       const response = await axios.post("https://192.168.0.31:9000/users/login", data);
-      console.log(response);
+      console.log(response.data.token);
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response.data);
     }
   }
 

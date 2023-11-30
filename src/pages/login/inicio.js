@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,6 +8,7 @@ import {
   TextInput,
 } from 'react-native';
 import { useFonts } from 'expo-font';
+import axios from 'axios';
 
 export default function Inicio(props) {
   const [fontsLoaded] = useFonts({
@@ -15,8 +17,34 @@ export default function Inicio(props) {
 
   const { navigation } = props;
 
+  const [state, setState] = useState({
+    email: "",
+    passowrd: ""
+  })
+
+  const onLogin = async () => {
+    const { email, password } = state;
+    const body = {
+      email,
+      password
+    }
+    try {
+      const response = await axios.post("https://192.168.0.31:9000/users/login", data);
+      console.log(response);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   const goToRegistro = () => {
     navigation.navigate("registro");
+  }
+
+  onHandleChange = (value, name) => {
+    setState({
+      ...state,
+      [name]: value
+    })
   }
 
   if (!fontsLoaded) {
@@ -37,10 +65,14 @@ export default function Inicio(props) {
           <TextInput
             style={styles.inputText}
             placeholder="Correo electronico"
+            value={state.email}
+            onChangeText={(text) => onHandleChange(text, "email")}
           />
           <TextInput
             style={styles.inputText}
             placeholder="Contraseña"
+            value={state.passowrd}
+            onChangeText={(text) => onHandleChange(text, "password")}
           />
         </View>
 
@@ -49,7 +81,7 @@ export default function Inicio(props) {
         </View>
 
         <View style={styles.centerText}>
-          <TouchableOpacity style={styles.personalizarButton}>
+          <TouchableOpacity style={styles.personalizarButton} onPress={onLogin}>
             <Text style={styles.textButton}>LOGIN</Text>
           </TouchableOpacity>
         </View>

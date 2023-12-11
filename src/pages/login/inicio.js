@@ -29,10 +29,10 @@ export default function Inicio(props) {
       password
     }
     try {
-      const response = await axios.post("https://192.168.0.31:9000/users/login", data);
-      console.log(response.data.token);
+      const response = await axios.post("http://10.10.3.99:9000/v1/user/login", body);
+      console.log(response.data);
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
     }
   }
 
@@ -71,7 +71,7 @@ export default function Inicio(props) {
           <TextInput
             style={styles.inputText}
             placeholder="Contraseña"
-            value={state.passowrd}
+            value={state.password}
             onChangeText={(text) => onHandleChange(text, "password")}
           />
         </View>
@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   title: {
-    position: "relative",
+    position: "absolute",
+    paddingTop: 120,
     color: "#fff",
     fontSize: 50,
     fontFamily: "DelaGothicOne-Regular",
